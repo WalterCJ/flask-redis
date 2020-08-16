@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from redis import Redis
 
 app = Flask(__name__)
@@ -7,7 +7,7 @@ redis = Redis(host='redis', port=6379)
 @app.route('/')
 def hello():
     redis.incr('hits')
-    return 'This Compose/Flask demo has been viewed %s time(s).' % redis.get('hits')
+    return render_template('index.html', hits=int(redis.get('hits')) ) 
 
 
 if __name__ == "__main__":
