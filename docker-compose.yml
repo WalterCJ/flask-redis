@@ -1,5 +1,7 @@
 version: "2"
 services:
+  producer:
+    build: ./producer/
   web:
     build: .
     ports:
